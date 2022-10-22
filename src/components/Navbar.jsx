@@ -18,8 +18,8 @@ const Navbar = ({user}) => {
   return (
     <div className='flex justify-between h-16 px-4 items-center shadow bg-white'>
         <div className='font-bold text-xl'>YukPilih</div>
-        <div> <span>{user} </span> 
-          <button className='' onClick={handleLogout}> | Logout </button>
+        <div> <span>{user}</span>{' | '}
+          <button className='bg-red-500 rounded-lg shadow p-2 text-white text-sm' onClick={handleLogout}> Logout</button>
         </div>
     </div>
   )
