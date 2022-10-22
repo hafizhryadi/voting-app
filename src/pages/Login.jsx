@@ -1,9 +1,17 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => { 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(window.localStorage.getItem('token')) {
+            navigate('/poll');
+        }
+    }, []);
     const handleLogin = async(event) => {
         event.preventDefault();
         const formData=new FormData();
@@ -11,8 +19,10 @@ const Login = () => {
         formData.append('password', password);
 
         await axios.post("http://127.0.0.1:8000/api/auth/login", formData).then(res=>{
+            navigate('/poll');    
             const token = res.data.access_token;
             window.localStorage.setItem('token', token);
+            
         }); 
         
     }
